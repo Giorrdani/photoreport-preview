@@ -12,12 +12,12 @@
    на <html> (форма фотографа) или на <body> (кабинет). */
 :root,html[data-theme=dark],body,body[data-theme=dark]{
   color-scheme:dark;
-  --bg:#10221d;--surface:#263b34;--surface2:#30473f;--surface-alt:#2b413a;--surface-pop:#213a30;--panel:#263b34;
+  --bg:#10221d;--surface:#0d1e18;--surface2:#30473f;--surface-alt:#2b413a;--surface-pop:#213a30;--panel:#0d1e18;
   --field:#2b413a;--input-bg:rgba(255,255,255,.085);
   --text:#f6f7f2;--muted:#b3c2b9;--soft-text:#cbd7cf;
   --line:rgba(255,255,255,.08);--border:rgba(255,255,255,.1);
   --accent:#ff796b;--accent-2:#ff7164;--accent-text:#16251e;--accent-grad:linear-gradient(135deg,#ff9c87,#ff7164);
-  --blue:#ff796b;--blue-2:#ff7164;--soft-blue:rgba(255,121,107,.16);--card:#263b34;
+  --blue:#ff796b;--blue-2:#ff7164;--soft-blue:rgba(255,121,107,.16);--card:#0d1e18;
   --green:#90d9ad;--green-bg:rgba(54,182,120,.16);--red:#ffb1a7;--red-bg:rgba(255,121,107,.15);--orange:#ffc27a;
   --btn-soft:rgba(255,255,255,.09);--btn-soft-hover:rgba(255,255,255,.15);
   --danger-bg:rgba(255,121,107,.2);--danger-fg:#ffb1a7;
