@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head><script src="./preview.js"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+<meta content="#10221d" name="theme-color"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="default" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="Фотоотчёт" name="apple-mobile-web-app-title"/>
+<meta content="Отчёты фотографов: продажи, деньги и локальные черновики" name="description"/>
+<link href="./manifest.webmanifest" rel="manifest"/>
+<link href="./photo-logo-192.png" rel="apple-touch-icon"/>
+<link href="./photo-logo-192.png" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="./styles.css?v=24" rel="stylesheet"/>
+<title>Фотоотчёт — отчёт за смену</title>
+<script>
+    // Set the theme before paint to prevent a light flash in dark mode.
+    try {
+      const saved = localStorage.getItem('photo-theme');
+      document.documentElement.dataset.theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    } catch (_) { document.documentElement.dataset.theme = 'light'; }
+  </script>
+<link href="./custom-controls.css?v=21" rel="stylesheet"/>
+<link href="./theme.css?v=5" rel="stylesheet"/></head>
+<body><div class="preview-banner">ДЕМО · только проверка интерфейса — данные не сохраняются</div>
+<header class="site-header">
+<div class="header-inner">
+<div class="brand"><img alt="" class="brand-icon" height="48" src="./photo-logo.svg" width="48"/><h1 class="compact-title">Отчёт</h1><span aria-label="Статус подключения" class="pill compact-network" id="network" role="status" title="Статус подключения">●</span></div>
+<button aria-label="Переключить тему" aria-pressed="false" class="theme-toggle" id="themeToggle" type="button">🌙 Тёмная</button>
+</div>
+</header>
+<main class="app-layout">
+<div class="main-column">
+<form id="report" novalidate="">
+<section aria-labelledby="shift-heading" class="panel">
+<div class="section-head"><span class="section-symbol">01</span><h3 id="shift-heading">Информация о смене</h3><div class="compact-date" title="Нажмите, чтобы изменить дату"><span class="date-label">Дата отчёта</span><input aria-label="Дата отчёта" id="date" required="" title="Будущие даты недоступны" type="date"/></div></div>
+<div class="form-grid">
+<div class="field"><label for="club">Клуб</label><div class="select-wrap"><select id="club" required=""><option value="Аладдин">Аладдин</option><option value="Денди АК">Денди АК</option></select></div></div>
+<div class="field"><label for="worker">Фотограф</label><input aria-label="Фотограф" id="worker" placeholder="Войдите по PIN-коду" readonly="" required=""/></div>
+<div class="field comment-field"><label for="comment">Комментарий <span class="optional">· необязательно</span></label><input id="comment" placeholder="Примечание к смене"/></div>
+</div>
+</section>
+<section aria-labelledby="sales-heading" class="panel">
+<div class="section-head"><span class="section-symbol">02</span><h3 id="sales-heading">Фотопродукция</h3></div>
+<div class="products">
+<div class="product-row"><div class="product-info"><span class="product-icon">✦</span><div><strong>Магнит</strong><span class="price">400 ₽ / шт.</span></div></div><div class="stepper"><button aria-label="Уменьшить количество магнитов" class="step-btn" data-step="-1" data-target="magnet" type="button">−</button><input aria-label="Количество магнитов" id="magnet" inputmode="numeric" min="0" step="1" type="number" value="0"/><button aria-label="Увеличить количество магнитов" class="step-btn plus" data-step="1" data-target="magnet" type="button">+</button></div></div>
+<div class="product-row"><div class="product-info"><span class="product-icon">▣</span><div><strong>Фото 10×15 <span class="muted-inline">(А6)</span></strong><span class="price">200 ₽ / шт.</span></div></div><div class="stepper"><button aria-label="Уменьшить количество А6" class="step-btn" data-step="-1" data-target="a6" type="button">−</button><input aria-label="Количество А6" id="a6" inputmode="numeric" min="0" step="1" type="number" value="0"/><button aria-label="Увеличить количество А6" class="step-btn plus" data-step="1" data-target="a6" type="button">+</button></div></div>
+<div class="product-row"><div class="product-info"><span class="product-icon">▧</span><div><strong>Фото 15×20 <span class="muted-inline">(А5)</span></strong><span class="price">350 ₽ / шт.</span></div></div><div class="stepper"><button aria-label="Уменьшить количество А5" class="step-btn" data-step="-1" data-target="a5" type="button">−</button><input aria-label="Количество А5" id="a5" inputmode="numeric" min="0" step="1" type="number" value="0"/><button aria-label="Увеличить количество А5" class="step-btn plus" data-step="1" data-target="a5" type="button">+</button></div></div>
+<div class="product-row"><div class="product-info"><span class="product-icon">✧</span><div><strong>Маленький магнит</strong><span class="price">250 ₽ / шт.</span></div></div><div class="stepper"><button aria-label="Уменьшить количество маленьких магнитов" class="step-btn" data-step="-1" data-target="small" type="button">−</button><input aria-label="Количество маленьких магнитов" id="small" inputmode="numeric" min="0" step="1" type="number" value="0"/><button aria-label="Увеличить количество маленьких магнитов" class="step-btn plus" data-step="1" data-target="small" type="button">+</button></div></div>
+<div aria-label="Дополнительные товары" class="extra-products" id="extraProducts"></div>
+<div class="product-row"><div class="product-info"><span class="product-icon">↗</span><div><strong>Электронный вариант</strong><span class="price">Общая сумма, ₽</span></div></div><div class="amount-wrap"><input aria-label="Сумма электронных фотографий" id="digital" inputmode="decimal" min="0" step="0.01" type="number" value="0"/><span>₽</span></div></div>
+</div>
+<details class="discount-details"><summary><span class="discount-symbol">%</span><span>Продажи со скидкой</span><span aria-hidden="true" class="summary-chevron"></span></summary>
+<div class="discount-body">
+<div aria-label="Позиции со скидкой" id="discountLines"></div>
+<button class="discount-add" id="addDiscountLine" type="button">+ Добавить товар со скидкой</button>
+<p class="hint">Для каждой позиции укажи товар, количество и общую сумму продажи со скидкой.</p>
+<div hidden=""><select id="discountProduct"><option value="magnet">Магнит</option><option value="a6">Фото А6</option><option value="a5">Фото А5</option><option value="small">Маленький магнит</option></select><input id="discountQty" value="0"/><input id="discountPrice" value="0"/></div>
+</div>
+</details>
+</section>
+<section aria-labelledby="money-heading" class="panel">
+<div class="section-head"><span class="section-symbol">03</span><h3 id="money-heading">Распределение денег</h3></div>
+<div class="form-grid money-grid">
+<div class="field"><label for="cash">Наличные в клубе, ₽</label><input id="cash" inputmode="decimal" min="0" step="0.01" type="number" value="0"/></div>
+<div class="field"><label for="owner">Переводы владельцу, ₽</label><input id="owner" inputmode="decimal" min="0" step="0.01" type="number" value="0"/></div>
+<div class="field"><label for="workerCard">Переводы фотографу, ₽</label><input id="workerCard" inputmode="decimal" min="0" step="0.01" type="number" value="0"/></div>
+</div>
+<div class="summary-grid">
+<div class="summary-card total-card"><span>Итого продаж</span><strong class="money" id="total">0 ₽</strong><span class="summary-watermark">₽</span></div>
+<div class="summary-card balance-card"><span>Проверка сумм</span><p class="error" id="balance">—</p></div>
+</div>
+</section>
+<section aria-label="Действия с отчётом" class="submit-area">
+<div class="submit-buttons"><button class="button button-secondary" id="save" type="button"><span aria-hidden="true">▣</span> Сохранить черновик</button><button class="button button-primary" id="send" type="button"><span aria-hidden="true">↗</span> Отправить отчёт</button></div>
+<div aria-live="polite" class="feedback" id="message" role="status"></div>
+<p class="hint submit-hint">Черновик остаётся на устройстве. Владелец получит отчёт только после успешной отправки на сервер.</p>
+</section>
+</form>
+</div>
+<aside class="side-column">
+<section aria-labelledby="drafts-heading" class="panel drafts-panel">
+<div class="drafts-header"><div><div class="eyebrow">НЕОТПРАВЛЕННЫЕ</div><h3 id="drafts-heading">Локальные черновики</h3></div><button aria-controls="draftsContent" aria-expanded="false" aria-label="Развернуть локальные черновики" class="drafts-glyph" id="draftsToggle" type="button"></button></div><div hidden="" id="draftsContent">
+<p class="drafts-intro">Доступны на этом устройстве, даже без интернета.</p>
+<div class="drafts-list" id="drafts"><p class="empty-drafts">Пока нет черновиков.</p></div></div>
+</section>
+<div class="privacy-note"><span aria-hidden="true">◈</span> Данные черновиков сохраняются только в браузере этого устройства.</div>
+</aside>
+</main>
+<script src="./app.js?v=25"></script>
+<script defer="" src="./custom-controls.js?v=21"></script>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const button=document.createElement('button');
+  button.type='button';
+  button.className='btn btn-muted logout-link';
+  button.textContent='Выйти из аккаунта';
+  const message=document.createElement('p');
+  message.setAttribute('role','alert');
+  message.className='logout-message';
+  button.addEventListener('click',async()=>{
+    button.disabled=true;
+    message.textContent='';
+    try{
+      const response=await fetch('/worker/logout',{
+         method:'POST',credentials:'same-origin',cache:'no-store',
+         headers:{'X-Requested-With':'XMLHttpRequest'}
+       });
+       if(!response.ok)throw new Error('Не удалось выйти из аккаунта ('+response.status+').');
+      location.replace('/worker/login');
+    }catch(e){message.textContent=e.message||'Не удалось выйти из аккаунта.';button.disabled=false;}
+  });
+  document.body.append(button,message);
+});
+</script><nav aria-label="Демо-навигация" class="preview-nav"><a href="worker-login.html">PIN</a><a class="current" href="index.html">Фотограф</a><a href="login.html">Вход админа</a><a href="admin.html">Кабинет</a><a href="staff.html">Сотрудники</a><a href="catalog.html">Управление</a><a href="finance.html">Финансы</a></nav></body>
+</html>

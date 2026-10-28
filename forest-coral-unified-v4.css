@@ -1,0 +1,38 @@
+/* Forest Coral v4: final unified theme. Source archive: photo-report check design.zip */
+:root{--fc-coral:#ff796b;--fc-forest:#10221d;--fc-ink:#f6f7f2;--fc-glass:rgba(113,151,132,.14)}
+body.fc3-auth .fc3-login{width:min(370px,100%);min-height:460px;display:flex;flex-direction:column;align-items:stretch;justify-content:center;gap:0;background:linear-gradient(155deg,rgba(255,255,255,.10),rgba(255,255,255,.025)),rgba(24,54,43,.83)!important;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+body.fc3-auth .fc3-login h1,body.fc3-auth .fc3-login h2{text-align:center;font-size:27px;margin:0 0 10px;letter-spacing:-.05em;color:#f6f7f2}
+body.fc3-auth .fc3-login p{text-align:center}body.fc3-auth .fc3-login .subtitle{margin:0 0 20px}
+body.fc3-auth .fc3-login button[type=submit]{width:70px!important;height:70px!important;min-height:70px!important;margin:25px auto 0!important;border-radius:50%!important;background:linear-gradient(140deg,#ffa28f,#ff7164)!important;color:#13271e!important;display:grid!important;place-items:center!important;font-size:30px!important;font-weight:400!important;box-shadow:0 13px 28px rgba(255,113,100,.24)!important}
+body.fc3-auth .fc3-login button[type=submit]::after{content:none!important}
+body.fc3-auth .fc3-login .owner,body.fc3-auth .fc3-login .back{margin:26px auto 0!important;text-align:center}body.fc3-auth .fc3-login .back a{color:#e9f0ea!important}
+body.fc3-auth .fc3-login input[name=pin]{letter-spacing:.45em!important;font-size:25px!important;text-align:center!important;height:58px!important;padding:12px 5px!important;background:repeating-linear-gradient(90deg,rgba(255,255,255,.095) 0,rgba(255,255,255,.095) calc(16.666% - 5px),transparent calc(16.666% - 5px),transparent 16.666%)!important;border-radius:14px!important;box-shadow:none!important}
+body.fc3-auth .fc3-login input[name=pin]::placeholder{color:#cbd5cd!important}
+body.fc3-auth .fc3-login label{text-align:left;color:#cbd7cf!important}body.fc3-auth .fc3-login label input{background:rgba(255,255,255,.085)!important;border-radius:14px!important;box-shadow:inset 0 1px rgba(255,255,255,.12)!important}
+/* Staff: create and existing employees */
+body.fc3-staff .fc3-create form{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 44px!important}
+body.fc3-staff .fc3-create .fc3-plus{margin:0!important;font-size:27px!important}
+body.fc3-staff .fc3-staff-card{position:relative;padding:17px!important;background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.02)),rgba(38,71,56,.67)!important}
+body.fc3-staff .fc3-person-head{padding-right:63px;min-height:50px}
+body.fc3-staff .fc3-toggle-form{position:absolute;right:17px;top:26px!important}
+body.fc3-staff .fc3-pin-form{max-width:none!important}
+body.fc3-staff .fc3-actions{gap:8px!important;justify-content:space-around}
+body.fc3-staff .fc3-actions form{flex:1 1 0;min-width:0}
+body.fc3-staff .fc3-actions button{padding:0!important;box-shadow:none!important;min-height:0!important;line-height:1.2!important}
+body.fc3-staff .fc3-actions button small{white-space:normal!important;text-align:center;font-size:10px!important}
+/* Catalog create form */
+.fc3-catalog-add form{grid-template-columns:minmax(0,1fr) 46px!important}
+.fc3-catalog-add form select{grid-column:1/-1!important}
+.fc3-catalog-add form input[name=name]{grid-column:1!important;grid-row:2!important}
+.fc3-catalog-add form input[name=price]{grid-column:1!important;grid-row:3!important}
+.fc3-catalog-add .fc3-plus{grid-column:2!important;grid-row:2/4!important;margin:0!important}
+/* Photographer controls and custom picker: no blue legacy */
+body #club,body #worker,body #comment,body .compact-date input{background:rgba(255,255,255,.095)!important;color:var(--text)!important}
+body .custom-picker [role=option],body .custom-picker .picker-option,body .custom-picker button.picker-option{text-align:left!important;justify-content:flex-start!important;align-items:center!important}
+body .discount-details{background:linear-gradient(145deg,rgba(255,255,255,.11),rgba(255,255,255,.025)),rgba(32,66,50,.65)!important;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:20px!important}
+body .discount-details .discount-symbol,body .discount-details .summary-chevron{color:#ff9d8b!important;background:rgba(255,121,107,.16)!important}
+body .step-btn.plus{background:#ff796b!important;color:#17251e!important}
+body .step-btn,body .summary-chevron,body .fc3-plus{display:inline-grid!important;place-items:center!important}
+/* Transparency is visible only over a layered backdrop */
+body.admin-interface .report,body.admin-interface .panel,body.fc3-staff .staff-card,body .panel,body .summary-card{backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+@media(max-width:390px){body.fc3-staff .fc3-create form{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 42px!important}body.fc3-staff .fc3-create input{font-size:11px!important;padding:9px 7px!important}}

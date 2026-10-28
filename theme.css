@@ -1,0 +1,251 @@
+/* ==========================================================================
+   Forest Coral — единая тема «Фотоотчёта»
+   Подключается ПОСЛЕДНЕЙ на каждой странице. Заменяет forest-coral(-v2/-v3/-unified-v4).css.
+   Порядок: 1 токены · 2 база · 3 поверхности · 4 поля · 5 кнопки · 6 шапка/навигация
+            7 кабинет владельца · 8 форма фотографа · 9 вход · 10 сотрудники · 11 каталог
+   ========================================================================== */
+
+/* ---------- 1. Токены -------------------------------------------------------
+   Один набор значений под оба «диалекта» старых стилей: у формы фотографа это
+   --blue/--soft-blue/--field, у кабинета — --accent/--surface2/--line.
+   Тёмная тема по умолчанию; светлая включается атрибутом data-theme="light"
+   на <html> (форма фотографа) или на <body> (кабинет). */
+:root,html[data-theme=dark],body,body[data-theme=dark]{
+  color-scheme:dark;
+  --bg:#10221d;--surface:#263b34;--surface2:#30473f;--surface-alt:#2b413a;--surface-pop:#213a30;--panel:#263b34;
+  --field:#2b413a;--input-bg:rgba(255,255,255,.085);
+  --text:#f6f7f2;--muted:#b3c2b9;--soft-text:#cbd7cf;
+  --line:rgba(255,255,255,.08);--border:rgba(255,255,255,.1);
+  --accent:#ff796b;--accent-2:#ff7164;--accent-text:#16251e;--accent-grad:linear-gradient(135deg,#ff9c87,#ff7164);
+  --blue:#ff796b;--blue-2:#ff7164;--soft-blue:rgba(255,121,107,.16);--card:#263b34;
+  --green:#90d9ad;--green-bg:rgba(54,182,120,.16);--red:#ffb1a7;--red-bg:rgba(255,121,107,.15);--orange:#ffc27a;
+  --btn-soft:rgba(255,255,255,.09);--btn-soft-hover:rgba(255,255,255,.15);
+  --danger-bg:rgba(255,121,107,.2);--danger-fg:#ffb1a7;
+  --glass:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.018));
+  --glow-1:rgba(100,135,115,.20);--glow-2:rgba(80,108,91,.17);
+  --shadow:0 14px 34px rgba(2,14,10,.28);--shadow-panel:0 14px 34px rgba(2,14,10,.28);
+  --shadow-field:0 4px 12px rgba(2,14,10,.2),inset 0 1px rgba(255,255,255,.04);
+  --shadow-raised:0 7px 18px rgba(2,14,10,.26);--shadow-blue:0 8px 22px rgba(255,113,100,.26);
+  --r-card:23px;--r-field:14px;
+}
+html[data-theme=light],html[data-theme=light] body,body[data-theme=light]{
+  color-scheme:light;
+  --bg:#eff1eb;--surface:#ffffff;--surface2:#e8eee8;--surface-alt:#f3f6f1;--surface-pop:#ffffff;--panel:#ffffff;
+  --field:#e8eee8;--input-bg:#e8eee8;
+  --text:#24382f;--muted:#63786c;--soft-text:#3d5247;
+  --line:rgba(36,56,47,.10);--border:rgba(36,56,47,.12);
+  --accent:#ee7165;--accent-2:#e5604f;--accent-text:#16251e;--accent-grad:linear-gradient(135deg,#ff9c87,#ff7164);
+  --blue:#e2584a;--blue-2:#e5604f;--soft-blue:rgba(238,113,101,.14);--card:#ffffff;
+  --green:#1f8a5b;--green-bg:#e3f4ea;--red:#c4473d;--red-bg:#fdecea;--orange:#b9731b;
+  --btn-soft:rgba(36,56,47,.08);--btn-soft-hover:rgba(36,56,47,.14);
+  --danger-bg:rgba(226,88,74,.12);--danger-fg:#c4473d;
+  --glass:linear-gradient(145deg,rgba(255,255,255,.7),rgba(255,255,255,.2));
+  --glow-1:rgba(255,255,255,.7);--glow-2:rgba(214,226,214,.6);
+  --shadow:0 12px 30px rgba(24,43,35,.10);--shadow-panel:0 12px 30px rgba(24,43,35,.10);
+  --shadow-field:0 3px 9px rgba(24,43,35,.08);
+  --shadow-raised:0 6px 16px rgba(24,43,35,.12);--shadow-blue:0 8px 20px rgba(238,113,101,.28);
+}
+
+/* ---------- 2. База ------------------------------------------------------- */
+*,*::before,*::after{box-sizing:border-box}
+html:has(body[data-theme=light]){background:#eff1eb}
+body{
+  background:radial-gradient(ellipse at 100% 0%,var(--glow-1),transparent 40%),radial-gradient(ellipse at 0% 100%,var(--glow-2),transparent 48%),var(--bg);
+  background-attachment:fixed;color:var(--text);font-family:Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+button,a,summary{-webkit-tap-highlight-color:transparent}
+:where(a,button,input,select,textarea,summary):focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.eyebrow{color:var(--accent);letter-spacing:.14em}
+.muted,small{color:var(--muted)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+
+/* ---------- 3. Поверхности (стеклянные карточки) --------------------------- */
+.panel,.report,.report-calendar,.staff-card,.catalog-card,.finance-card,.login-card,.drafts-panel{
+  border:0;border-radius:var(--r-card);background:var(--glass),var(--surface);box-shadow:var(--shadow);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+}
+.summary-card{backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.brand-logo,.brand-icon{border-radius:15px;object-fit:cover;box-shadow:0 8px 22px rgba(0,0,0,.2)}
+.section-symbol,.product-icon{background:var(--soft-blue);color:var(--accent);border-radius:12px}
+
+/* ---------- 4. Поля ввода -------------------------------------------------- */
+input:where(:not([type=checkbox],[type=radio],[type=hidden])),select,textarea{
+  min-height:41px;background:var(--input-bg);color:var(--text);border:0;border-radius:var(--r-field);
+  box-shadow:var(--shadow-field);font-family:inherit;max-width:100%;
+}
+input::placeholder,textarea::placeholder{color:var(--muted);opacity:.75}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b3c2b9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:16px}
+.select-wrap select{background-image:none}
+input[type=date]{accent-color:var(--accent)}
+
+/* ---------- 5. Кнопки: ОДНА система ----------------------------------------
+   Форма у всех одна — «таблетка». Три роли:
+     основная   .btn-approve .btn-primary .button-primary .btn-plus   — коралловый градиент
+     нейтральная .btn-muted .btn-soft .btn-quiet .button-secondary .link — полупрозрачная
+     опасная    .btn-delete .btn-delete-report .btn-danger            — розовая «стекляшка»
+   Размеры: по умолчанию 40px, .btn-sm — 34px (строки списков, шапка). */
+.btn,.link,.button,input[type=submit],summary.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  min-height:40px;padding:9px 16px;border:0;border-radius:999px;
+  font-family:inherit;font-size:13px;font-weight:700;line-height:1.25;text-align:center;text-decoration:none;white-space:nowrap;
+  color:var(--text);background:var(--btn-soft);box-shadow:none;cursor:pointer;
+  transition:transform .15s ease,background .18s ease,filter .18s ease,box-shadow .18s ease;
+}
+.btn:hover,.link:hover,.button:hover{background:var(--btn-soft-hover)}
+.btn:active,.link:active,.button:active{transform:scale(.97)}
+.btn:disabled,.button:disabled{opacity:.55;cursor:wait}
+.btn svg,.link svg,.button svg{display:block;flex-shrink:0}
+.btn-sm{min-height:34px;padding:6px 13px;font-size:12px}
+
+.btn-approve,.btn-primary,.button-primary,.btn-plus,.fc3-plus,.fc3-auth-submit{
+  background:var(--accent-grad);color:var(--accent-text);font-weight:800;box-shadow:0 8px 21px rgba(255,113,100,.28);
+}
+.btn-approve:hover,.btn-primary:hover,.button-primary:hover,.btn-plus:hover,.fc3-plus:hover,.fc3-auth-submit:hover{background:var(--accent-grad);filter:brightness(1.07)}
+
+.btn-muted,.btn-soft,.btn-quiet,.button-secondary,.link,.secondary{background:var(--btn-soft);color:var(--text)}
+.btn-quiet{color:var(--muted)}
+.btn-muted:hover,.btn-soft:hover,.btn-quiet:hover,.button-secondary:hover,.link:hover,.secondary:hover{background:var(--btn-soft-hover)}
+
+.btn-delete,.btn-delete-report,.btn-danger,.danger{background:var(--danger-bg);color:var(--danger-fg)}
+.btn-delete:hover,.btn-delete-report:hover,.btn-danger:hover,.danger:hover{background:var(--danger-bg);filter:brightness(1.12)}
+
+/* круглые иконочные кнопки (+, шаги ±, ×) */
+.btn-plus,.fc3-plus{width:44px;height:44px;min-height:44px;padding:0;border-radius:50%;font-size:27px;font-weight:400;line-height:1}
+.step-btn{display:inline-grid;place-items:center;width:36px;min-width:36px;height:36px;padding:0;border-radius:50%;font-size:20px;line-height:1}
+.step-btn.plus{background:var(--accent);color:var(--accent-text)}
+.theme-toggle{border-radius:999px;background:var(--btn-soft);box-shadow:none;color:var(--text)}
+
+/* крупные кнопки действий в форме фотографа */
+.submit-buttons .button{min-height:52px;font-size:13px;padding:13px 14px}
+
+/* ---------- 6. Шапка и навигация ------------------------------------------- */
+.topbar{align-items:center;gap:12px}
+.brand{min-width:0;align-items:center}
+.brand h1{font-size:clamp(17px,4vw,23px);line-height:1.16;letter-spacing:-.03em}
+.subtitle{font-size:11px}
+.top-actions{align-items:center;gap:6px}
+.top-actions .btn{font-size:11px;padding:7px 12px;min-height:34px}
+.shell{max-width:1000px}
+.navcards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.navcard{min-width:0;min-height:90px;padding:11px 4px;border:0;border-radius:19px;background:var(--glass),var(--surface);box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:7px}
+.navicon{width:34px;height:34px;display:grid;place-items:center;border-radius:12px;background:var(--btn-soft);color:var(--accent)}
+.navcard strong{font-size:clamp(9px,2.45vw,13px);line-height:1.2;overflow-wrap:anywhere}
+.navcard small,.navarrow{display:none}
+@media(max-width:480px){
+  .shell{padding:14px 12px 55px}.topbar{gap:7px}.brand{gap:8px}.brand-logo{width:39px;height:39px}
+  .navcards{gap:6px}.navcard{min-height:83px;padding:9px 3px}.navicon{width:30px;height:30px}.navcard strong{font-size:9.5px}
+  .top-actions .btn{padding:6px 10px;font-size:10px}
+}
+
+/* ---------- 7. Кабинет владельца ------------------------------------------- */
+.report-calendar{padding:15px}
+.calendar-day{border-radius:999px}
+.report[data-club*="Аладдин"]{background:linear-gradient(120deg,rgba(159,116,224,.18),rgba(120,87,164,.055)),var(--surface);box-shadow:0 7px 25px rgba(153,107,226,.17),inset 3px 0 0 rgba(188,147,249,.58)}
+.report[data-club*="Денди"],.report[data-club*="Dendy"],.report[data-club*="Dendi"]{background:linear-gradient(120deg,rgba(118,207,153,.15),rgba(79,145,102,.035)),var(--surface);box-shadow:0 7px 25px rgba(100,206,140,.14),inset 3px 0 0 rgba(133,226,166,.54)}
+.edit-panel>summary.btn{justify-content:flex-start}
+.delete-report-form{justify-content:flex-end}
+.admin-quickbar{display:flex;gap:8px;justify-content:flex-start}
+
+/* ---------- 8. Форма фотографа --------------------------------------------- */
+.discount-details{margin-top:18px;padding:13px 14px;border:0;border-radius:20px;background:var(--glass),var(--surface-alt);box-shadow:var(--shadow-field)}
+.discount-details summary{display:flex;align-items:center;gap:11px;padding:4px 0}
+.discount-details .discount-symbol,.discount-details .summary-chevron{display:grid;place-items:center;width:33px;height:33px;border-radius:12px;background:var(--soft-blue);color:var(--accent)}
+.discount-details[open]{padding-bottom:16px}
+.discount-add{border-radius:999px;background:var(--soft-blue);color:var(--accent)}
+.discount-remove,.discount-line .discount-remove{background:var(--danger-bg);color:var(--danger-fg)}
+.drafts-glyph{border-radius:50%}
+.total-card{background:var(--soft-blue);color:var(--accent)}
+.compact-date{border-radius:15px;background:var(--btn-soft)}
+.logout-link{display:flex;margin:24px auto 8px;min-height:40px}
+.logout-message{text-align:center;margin:0 auto 20px;max-width:320px;color:var(--red);font-size:13px}
+.logout-message:empty{display:none}
+
+/* ---------- 9. Вход (владелец и фотограф — одна и та же карточка) ----------- */
+body.fc3-auth{margin:0;min-height:100dvh;display:grid;place-items:center;padding:22px;font-size:14px}
+.fc3-login{
+  box-sizing:border-box;position:relative;isolation:isolate;overflow:hidden;width:min(370px,100%);min-height:460px;padding:44px 24px 34px;
+  display:flex;flex-direction:column;justify-content:center;text-align:center;border-radius:32px;
+  background:linear-gradient(155deg,rgba(255,255,255,.10),rgba(255,255,255,.025)),rgba(24,54,43,.83);
+  box-shadow:0 24px 70px rgba(7,18,13,.55),inset 0 1px rgba(255,255,255,.09);
+}
+.fc3-login::before{content:"";position:absolute;z-index:-1;right:-70px;top:-95px;width:180px;height:180px;border-radius:50%;background:linear-gradient(145deg,#ff9c88,#ff6b5e)}
+.fc3-login::after{content:"";position:absolute;z-index:-1;left:-120px;bottom:-170px;width:230px;height:280px;transform:rotate(-35deg);border-radius:50%;background:linear-gradient(45deg,rgba(255,139,119,.63),transparent 70%)}
+.fc3-login h1,.fc3-login h2{font-size:27px;margin:0 0 8px;letter-spacing:-.05em;color:#f6f7f2}
+.fc3-login p{margin:0;color:#bdc9c2}
+.fc3-login .subtitle{margin:0 0 18px;font-size:13px}
+.fc3-login .err,.fc3-login .error{color:#ffb7aa;font-size:13px;margin:0 0 10px}
+.fc3-login label{display:block;text-align:left;font-size:12px;font-weight:700;color:#cbd7cf;margin:14px 0 0}
+.fc3-login input:where(:not([type=hidden])){display:block;width:100%;margin-top:7px;min-height:51px;padding:12px 14px;border:0;border-radius:14px;background:rgba(255,255,255,.085);color:#fff;font:inherit;font-size:16px;box-shadow:inset 0 1px rgba(255,255,255,.12)}
+.fc3-login input[name=pin]{letter-spacing:.45em;font-size:25px;text-align:center;height:58px;padding:12px 5px;margin-top:20px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.095) 0,rgba(255,255,255,.095) calc(16.666% - 5px),transparent calc(16.666% - 5px),transparent 16.666%);box-shadow:none}
+.fc3-login .fc3-auth-submit{width:70px;height:70px;min-height:70px;margin:26px auto 0;padding:0;border-radius:50%;font-size:30px;font-weight:400;box-shadow:0 13px 28px rgba(255,113,100,.3)}
+.fc3-login .owner,.fc3-login .back{display:block;margin:26px auto 0;text-align:center;font-size:12px}
+.fc3-login .owner,.fc3-login .back a{color:#e9f0ea;text-decoration:underline}
+.fc3-login .owner{text-decoration:none;color:#bdc9c2}
+
+/* ---------- 10. Сотрудники ------------------------------------------------- */
+.staff-page{max-width:900px}
+.staff-list{display:grid;gap:12px;margin-top:14px}
+.staff-create form{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 44px;gap:8px;align-items:center;margin:0}
+.staff-create input,.staff-pin-form input{font-size:13px;padding:10px 12px}
+.staff-card{padding:17px}
+.staff-card h2{font-size:16px;margin:0 0 10px}
+.staff-head{display:flex;align-items:center;gap:12px}
+.staff-avatar{width:46px;height:46px;flex:0 0 46px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(145deg,#a5b7af,#667c72);font-size:22px;color:#fff}
+.staff-name{flex:1;min-width:0}
+.staff-name h2{margin:0 0 2px}
+.staff-name p{margin:0;font-size:12px}
+.staff-name .is-active{color:var(--green)}.staff-name .is-inactive{color:var(--red)}
+.staff-toggle-form{margin:0}
+.staff-toggle{display:flex;align-items:center;width:51px;height:30px;min-height:30px;padding:3px;border:0;border-radius:99px;background:var(--btn-soft-hover);cursor:pointer;box-shadow:none}
+.staff-toggle.is-on{background:#36b678}
+.staff-toggle span{display:block;width:24px;height:24px;border-radius:50%;background:#f8faf7;transition:transform .2s}
+.staff-toggle.is-on span{transform:translateX(21px)}
+.staff-pin-form{position:relative;display:flex;margin:15px 0 0}
+.staff-pin-form input{padding-right:52px}
+.staff-pin-form .btn-icon{position:absolute;right:4px;top:50%;transform:translateY(-50%)}
+.btn-icon{width:34px;min-height:34px;height:34px;padding:0;border-radius:50%;font-size:16px}
+.staff-actions{display:flex;gap:12px;margin-top:14px}
+.staff-actions form{flex:1;margin:0}
+.staff-actions .btn{width:100%;min-height:44px}
+.staff-note{margin:0 0 12px;font-size:13px}
+.staff-note.ok{color:var(--green)}.staff-note.err{color:var(--red)}
+@media(max-width:380px){.staff-create form{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 40px;gap:6px}.staff-create input{padding:9px 7px;font-size:11px}.btn-plus{width:40px;height:40px;min-height:40px}}
+
+/* ---------- 11. Управление (каталог) --------------------------------------- */
+.catalog-add form{display:grid;grid-template-columns:minmax(0,1fr) 46px;gap:9px;align-items:center;margin:0}
+.catalog-add form select{grid-column:1/-1}
+.catalog-add form input[name=name]{grid-column:1;grid-row:2}
+.catalog-add form input[name=price]{grid-column:1;grid-row:3}
+.catalog-add .btn-plus{grid-column:2;grid-row:2/4;justify-self:center;align-self:center;width:46px;height:46px;min-height:46px}
+.catalog-toggle{border-radius:18px}
+.catalog-item{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px 12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.catalog-item:last-child{border-bottom:0}
+.catalog-item-head{min-width:0}
+.catalog-item-identity{display:flex;flex-direction:column;align-items:flex-start;gap:3px}
+.catalog-item-identity strong{font-size:14px;line-height:1.3}
+.catalog-state{font-size:11px;font-weight:600;color:var(--muted)}
+.catalog-state.is-active::before{content:'';display:inline-block;width:6px;height:6px;margin-right:6px;vertical-align:middle;background:var(--green);border-radius:50%}
+.catalog-state.is-active{color:var(--muted)}
+.catalog-state.is-inactive{opacity:.7}
+.catalog-item-actions{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:6px}
+.catalog-item-actions form{display:flex;align-items:center;gap:6px;margin:0}
+.catalog-item.product-item{grid-template-columns:1fr}
+.catalog-item.product-item .catalog-item-actions{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:6px;justify-content:stretch}
+.catalog-item-actions .catalog-price-form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;width:100%}
+.catalog-price-form .catalog-input{width:100%;min-width:0;min-height:34px;height:34px;padding:5px 11px;font-size:13px;border-radius:999px}
+.catalog-item-actions .btn{min-height:34px;height:34px;padding:0 13px;font-size:12px}
+@media(max-width:400px){.catalog-item-actions .btn{padding:0 10px;font-size:11px}}
+
+/* Targeted product and PIN improvements — 2026-10-28 */
+#extraProducts.extra-products{display:contents}
+#extraProducts .product-row{min-width:0}
+#extraProducts .product-info{min-width:0}
+#extraProducts .product-info strong{overflow-wrap:anywhere}
+#extraProducts .stepper input{width:100%;min-width:0;max-width:100%;box-sizing:border-box;text-align:center}
+body.fc3-auth .fc3-login .fc5-pin{position:relative!important;display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:7px!important;width:100%!important;height:58px!important;margin:22px 0 0!important;background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important}
+body.fc3-auth .fc3-login .fc5-pin .fc5-cell{display:grid!important;place-items:center!important;min-width:0;height:58px;border-radius:12px;background:rgba(255,255,255,.10);color:#ffac9e;font-size:17px;box-shadow:inset 0 1px 0 rgba(255,255,255,.08);pointer-events:none}
+body.fc3-auth .fc3-login .fc5-pin .fc5-cell.is-current{box-shadow:inset 0 0 0 2px #ff8c7c,0 0 13px rgba(255,130,115,.14)}
+body.fc3-auth .fc3-login .fc5-pin input[name="pin"]{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;opacity:.02!important;z-index:2!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;color:transparent!important;caret-color:transparent!important;letter-spacing:0!important;box-shadow:none!important}
+body.fc3-auth .fc3-login button.fc3-auth-submit{display:grid!important;place-items:center!important;font-size:0!important;width:68px!important;height:68px!important;min-width:68px!important;min-height:68px!important;border-radius:50%!important;padding:0!important;line-height:1!important}
+body.fc3-auth .fc3-login button.fc3-auth-submit::after{content:'→';font-size:31px;font-weight:400;line-height:1}

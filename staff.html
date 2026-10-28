@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"><head><script src="./preview.js"></script><link href="./admin-manifest.webmanifest" rel="manifest"/><link href="./photo-logo-192.png" rel="apple-touch-icon"/><link href="./photo-logo-192.png" rel="icon" type="image/png"/><meta content="yes" name="apple-mobile-web-app-capable"/><meta content="Фотоотчёт Админ" name="apple-mobile-web-app-title"/><meta content="default" name="apple-mobile-web-app-status-bar-style"/><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#10221d" name="theme-color"/><title>Сотрудники · Фотоотчёт</title><link href="./admin-ui.css" rel="stylesheet"/><script defer="" src="./admin-theme.js"></script><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="./theme.css" rel="stylesheet"/></head><body class="admin-interface"><div class="preview-banner">ДЕМО · только проверка интерфейса — данные не сохраняются</div>
+<main class="shell staff-page">
+<header class="topbar"><div><div class="eyebrow">ФОТООТЧЁТ</div><h1>Сотрудники</h1></div><div class="top-actions"><button aria-label="Переключить тему" class="btn btn-muted btn-sm" id="themeToggle" type="button">◐ <span id="themeLabel">Тема</span></button><a class="btn btn-muted btn-sm" href="admin.html">← Кабинет</a></div></header>
+
+<div class="staff-list">
+<section class="staff-card staff-create"><h2>Новый фотограф</h2><form action="#" data-preview-form="true" method="post"><input type="hidden"/><input maxlength="100" name="name" placeholder="Имя фотографа" required=""/><input inputmode="numeric" maxlength="6" name="pin" pattern="[0-9]{6}" placeholder="PIN (6 цифр)" required=""/><button aria-label="Создать фотографа" class="btn btn-plus" title="Создать" type="submit">+</button></form></section>
+<section class="staff-card">
+<div class="staff-head"><span aria-hidden="true" class="staff-avatar">М</span><div class="staff-name"><h2>Мария</h2><p>Активен</p></div>
+<form action="#" class="staff-toggle-form" data-preview-form="true" method="post"><input type="hidden"/><button class="staff-toggle" type="submit"><span></span></button></form></div>
+<form action="#" class="staff-pin-form" data-preview-form="true" method="post"><input type="hidden"/><input inputmode="numeric" maxlength="6" name="pin" pattern="[0-9]{6}" placeholder="Новый PIN (6 цифр)" required=""/><button aria-label="Сменить PIN" class="btn btn-soft btn-icon" title="Сменить PIN" type="submit">✎</button></form>
+<div class="staff-actions">
+<form action="#" data-preview-form="true" method="post"><input type="hidden"/><button class="btn btn-muted" type="submit">Завершить сеансы</button></form>
+<form action="#" data-preview-form="true" method="post" onsubmit="return confirm('Архивировать сотрудника? Его отчёты сохранятся.')"><input type="hidden"/><button class="btn btn-delete" type="submit">В архив</button></form>
+</div>
+</section>
+</div></main><nav aria-label="Демо-навигация" class="preview-nav"><a href="worker-login.html">PIN</a><a href="index.html">Фотограф</a><a href="login.html">Вход админа</a><a href="admin.html">Кабинет</a><a class="current" href="staff.html">Сотрудники</a><a href="catalog.html">Управление</a><a href="finance.html">Финансы</a></nav></body></html>

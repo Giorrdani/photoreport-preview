@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head><script src="./preview.js"></script><link href="./admin-manifest.webmanifest" rel="manifest"/><link href="./photo-logo-192.png" rel="apple-touch-icon"/><link href="./photo-logo-192.png" rel="icon" type="image/png"/><meta content="yes" name="apple-mobile-web-app-capable"/><meta content="Фотоотчёт Админ" name="apple-mobile-web-app-title"/><meta content="default" name="apple-mobile-web-app-status-bar-style"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#10221d" name="theme-color"/>
+<title>Вход — Фотоотчёт</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="./theme.css" rel="stylesheet"/>
+<style>
+/* Match the photographer login arrow exactly. */
+body.fc3-auth .fc3-login button.fc3-auth-submit{display:flex!important;align-items:center!important;justify-content:center!important;padding:0!important;line-height:0!important}
+body.fc3-auth .fc3-login button.fc3-auth-submit::after{content:none!important;display:none!important}
+body.fc3-auth .fc3-login .fc-login-arrow{display:block!important;flex:0 0 30px!important;width:30px!important;height:30px!important;margin:0!important;transform:none!important;stroke:currentColor}
+  </style>
+</head>
+<body class="fc3-auth"><div class="preview-banner">ДЕМО · только проверка интерфейса — данные не сохраняются</div>
+<form action="#" class="fc3-login" data-preview-form="true" method="post">
+<h2>Фотоотчёт</h2>
+<p class="subtitle">Личный кабинет владельца</p>
+<p class="err">Неверный логин или пароль</p>
+<input type="hidden"/>
+<label>Логин<input autocomplete="username" name="username" required="" value="owner"/></label>
+<label>Пароль<input autocomplete="current-password" name="password" required="" type="password"/></label>
+<button aria-label="Войти" class="btn fc3-auth-submit" type="submit"><svg aria-hidden="true" class="fc-login-arrow" fill="none" height="30" viewbox="0 0 24 24" width="30" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button>
+<p class="back"><a href="index.html">Форма фотографа</a></p>
+</form>
+<nav aria-label="Демо-навигация" class="preview-nav"><a href="worker-login.html">PIN</a><a href="index.html">Фотограф</a><a class="current" href="login.html">Вход админа</a><a href="admin.html">Кабинет</a><a href="staff.html">Сотрудники</a><a href="catalog.html">Управление</a><a href="finance.html">Финансы</a></nav></body>
+</html>

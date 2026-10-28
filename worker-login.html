@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"><head><script src="./preview.js"></script><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><meta content="#10221d" name="theme-color"/><title>Вход фотографа · Фотоотчёт</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="./theme.css" rel="stylesheet"/><style>
+/* Only the login arrow: override older text/pseudo-element styling. */
+body.fc3-auth .fc3-login button.fc3-auth-submit{display:flex!important;align-items:center!important;justify-content:center!important;padding:0!important;line-height:0!important}
+body.fc3-auth .fc3-login button.fc3-auth-submit::after{content:none!important;display:none!important}
+body.fc3-auth .fc3-login .fc-login-arrow{display:block!important;flex:0 0 30px!important;width:30px!important;height:30px!important;margin:0!important;transform:none!important;stroke:currentColor}
+</style></head><body class="fc3-auth"><div class="preview-banner">ДЕМО · только проверка интерфейса — данные не сохраняются</div><form action="#" class="fc3-login" data-preview-form="true" method="post"><h1>Фотоотчёт</h1><p class="subtitle">Введите персональный PIN-код</p><input type="hidden"/><div class="fc5-pin" id="fc5Pin"><span aria-hidden="true" class="fc5-cell"></span><span aria-hidden="true" class="fc5-cell"></span><span aria-hidden="true" class="fc5-cell"></span><span aria-hidden="true" class="fc5-cell"></span><span aria-hidden="true" class="fc5-cell"></span><span aria-hidden="true" class="fc5-cell"></span><input aria-label="PIN из шести цифр" autocomplete="off" autofocus="" inputmode="numeric" maxlength="6" name="pin" pattern="[0-9]{6}" placeholder="" required="" type="password"/></div><button aria-label="Войти" class="btn fc3-auth-submit" type="submit"><svg aria-hidden="true" class="fc-login-arrow" fill="none" height="30" viewbox="0 0 24 24" width="30" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button><a class="owner" href="login.html">Вход для администратора</a></form><script>
+(()=>{
+ const wrapper=document.getElementById('fc5Pin');
+ if(!wrapper)return;
+ const input=wrapper.querySelector('input[name="pin"]');
+ const cells=[...wrapper.querySelectorAll('.fc5-cell')];
+ const render=()=>{
+  const count=input.value.length;
+  cells.forEach((cell,index)=>{
+   cell.textContent=index<count?'●':'';
+   cell.classList.toggle('is-current',index===Math.min(count,5));
+   cell.classList.toggle('is-filled',index<count);
+  });
+ };
+ wrapper.addEventListener('click',()=>input.focus());
+ input.addEventListener('input',()=>{input.value=input.value.replace(/\D/g,'').slice(0,6);render()});
+ input.addEventListener('focus',render);render();
+})();
+</script><nav aria-label="Демо-навигация" class="preview-nav"><a class="current" href="worker-login.html">PIN</a><a href="index.html">Фотограф</a><a href="login.html">Вход админа</a><a href="admin.html">Кабинет</a><a href="staff.html">Сотрудники</a><a href="catalog.html">Управление</a><a href="finance.html">Финансы</a></nav></body></html>

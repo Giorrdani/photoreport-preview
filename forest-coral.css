@@ -1,0 +1,19 @@
+/* PhotoReport · Forest Coral · UI layer v1 */
+:root{--forest:#20312d;--forest-2:#3f5750;--coral:#ff7468;--coral-light:#ff9a87}
+body.admin-interface,body{--bg:#15231f;--surface:#263b35;--surface2:#344a43;--text:#f8f8f3;--muted:#b4c2bb;--line:transparent;--accent:#ff786b;--accent-text:#18251f;--shadow:0 14px 36px #08120f55;background:radial-gradient(ellipse at 100% 0%,#405950 0%,transparent 36%),radial-gradient(ellipse at 0% 100%,#273e36 0%,transparent 48%),#15231f;color:var(--text);font-family:Manrope,-apple-system,BlinkMacSystemFont,sans-serif}
+body[data-theme=light]{--bg:#f1f2ed;--surface:#fff;--surface2:#e9ede8;--text:#20312b;--muted:#697d73;--line:transparent;--accent:#e96458;--accent-text:#fff;--shadow:0 12px 30px #243c2a14;background:#f1f2ed}
+.shell{max-width:1000px;padding:22px 16px 75px}.topbar{align-items:flex-start}.brand-logo{border-radius:16px;box-shadow:0 8px 22px #0002}.eyebrow{color:var(--accent);letter-spacing:.13em}.subtitle{font-size:12px}
+.btn,.link,button{transition:transform .16s ease,background .16s ease,box-shadow .16s ease}.btn:active,.link:active,button:active{transform:scale(.97)}
+.btn,.admin-quickbar .btn{border:0!important;border-radius:999px;background:color-mix(in srgb,var(--surface2) 84%,transparent);box-shadow:0 7px 18px #0002;color:var(--text)}
+.btn-approve,.btn.btn-approve{background:var(--coral)!important;color:#172720!important;box-shadow:0 8px 19px #ff74682e}
+.btn-delete,.danger{background:#704340!important;color:#ffd2ca!important}
+.navcards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:18px 0 24px}
+.navcard{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;padding:15px 4px;min-height:102px;border:0;border-radius:19px;background:linear-gradient(155deg,#ffffff14,#ffffff05),var(--surface);box-shadow:var(--shadow);backdrop-filter:blur(12px)}
+.navcard strong{font-size:clamp(9px,2.4vw,13px);line-height:1.25;overflow-wrap:anywhere}.navcard small,.navarrow{display:none!important}.navicon{width:36px;height:36px;border-radius:12px;background:#ffffff12;color:var(--accent);font-size:19px}
+.report,.report-calendar,.staff-card{border:0!important;border-radius:24px!important;background:linear-gradient(155deg,#ffffff0c,#ffffff02),var(--surface)!important;box-shadow:var(--shadow)!important;backdrop-filter:blur(16px)}
+input,select,textarea,.catalog-input{border:0!important;outline:0;background:color-mix(in srgb,var(--surface2) 85%,transparent)!important;border-radius:14px!important;box-shadow:inset 0 1px 1px #ffffff09,0 4px 12px #00000010;color:var(--text)!important}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--coral)!important;outline-offset:3px}
+.catalog-toggle{border:0!important}.catalog-item{border-color:#ffffff14!important}
+.admin-quickbar{justify-content:space-between}.admin-quickbar a{order:-1}
+@media(max-width:450px){.shell{padding:16px 14px 64px}.topbar{gap:8px}.top-actions{gap:5px}.top-actions .btn{padding:8px 10px;min-height:36px;font-size:11px}.brand{gap:8px}.brand-logo{width:40px;height:40px}.brand h1{font-size:18px}.navcard{min-height:93px;padding:12px 3px}.navicon{width:31px;height:31px}.navcard strong{font-size:10px}.report{padding:16px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important}}
